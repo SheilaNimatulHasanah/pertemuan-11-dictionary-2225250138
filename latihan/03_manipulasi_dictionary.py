@@ -1,0 +1,9 @@
+# Latihan 3: Manipulasi Dictionary
+# Menambah, mengubah, dan menghapus pasangan key-value pada dictionary.
+
+data = {"nama": "Ayu", "nilai": 85} 
+data["kelas"] = "A" 
+data["nilai"] = 90 
+print(data) 
+data.pop("kelas") 
+print(data)
