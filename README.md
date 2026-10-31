@@ -1,30 +1,28 @@
+# Pertemuan 11 - Dictionary/Map
+
 Nama: Sheila Ni'matul Hasanah
 NIM: 2225250138
 Kelas: 3B
 
 ## Tujuan
-Membaca, memvalidasi, mengolah, dan menulis data file dengan Python.
+Memodelkan data pendidikan menggunakan dictionary dan pasangan key-value.
 
-## Format File Input 
-NIM, nilai.
+## Struktur Data
+Program ini menggunakan *nested dictionary* (dictionary bersarang). Key utama yang digunakan adalah **NIM** mahasiswa (contoh: `"A001"`, `"A002"`, dst.), sedangkan value-nya berupa dictionary yang memuat atribut `"nama"`, `"kelas"`, dan `"nilai"`.
 
 ## Cara Menjalankan
 ```bash
-python3 tugas/rekap_nilai_file.py
+python3 praktik/data_mahasiswa.py
 ```
 
-## Error yang Ditangani
-* `FileNotFoundError`: Ditangani ketika file `data/nilai.txt` tidak ditemukan agar program tidak *crash*.
-* `ValueError`: Ditangani ketika data nilai pada baris tertentu berupa teks atau tidak valid sehingga baris tersebut dilewati tanpa menghentikan proses keseluruhan.
-
 ## Test Case
-| Kondisi | Hasil yang Diharapkan | Hasil Aktual | Status |
+| Kasus / Aksi | Hasil yang Diharapkan | Hasil Aktual | Status |
 | :--- | :--- | :--- | :--- |
-| Normal (Semua baris valid) | Semua record diproses dan rekap benar | Semua record diproses dan rekap benar | Lulus |
-| File hilang (`nilai.txt` tidak ada) | Pesan file tidak ditemukan; program tidak *crash* | Pesan file tidak ditemukan; program tidak *crash* | Lulus |
-| Nilai invalid (`A004,abc`) | Baris invalid dilewati/dilaporkan; record lain tetap diproses | Baris invalid dilewati/dilaporkan; record lain tetap diproses | Lulus |
-| Baris kosong | Baris kosong dilewati | Baris kosong dilewati | Lulus |
-| Batas lulus (Nilai 60) | Dihitung sebagai lulus | Dihitung sebagai lulus | Lulus | 
+| Pencarian tersedia (`A003`) | Data Citra ditampilkan | Data Citra ditampilkan | Lulus |
+| Pencarian tidak tersedia (`A999`) | Pesan 'Data tidak ditemukan' | Pesan 'Data tidak ditemukan' | Lulus |
+| Pembaruan nilai (`A002`) | Nilai A002 berubah menjadi 82 | Nilai A002 berubah menjadi 82 | Lulus |
+| Penambahan data (`A006`) | Key A006 tersedia setelah ditambahkan | Key A006 tersedia setelah ditambahkan | Lulus |
+| Rekap seluruh data (`items()`) | Semua NIM dan data tampil | Semua NIM dan data tampil | Lulus |
 
 ## Refleksi
-Kesalahan penanganan error yang sempat diantisipasi adalah mencegah program berhenti secara total ketika mendapati format baris atau nilai teks yang salah (`ValueError`), sehingga baris data yang valid tetap dapat dihitung dengan akurat.
+Kesalahan akses key yang sempat ditemukan adalah terjadinya `KeyError` saat mencoba mengakses key secara langsung menggunakan tanda kurung siku (`[]`) tanpa memastikan apakah key tersebut tersedia di dalam dictionary. Hal ini diperbaiki dengan menggunakan method `.get()` serta melakukan pengecekan menggunakan operator `in` agar program dapat berjalan dengan aman.
